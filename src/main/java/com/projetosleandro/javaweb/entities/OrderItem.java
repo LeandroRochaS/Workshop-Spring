@@ -3,6 +3,7 @@ package com.projetosleandro.javaweb.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projetosleandro.javaweb.entities.pk.OrderItemPk;
 
 import jakarta.persistence.EmbeddedId;
@@ -17,7 +18,7 @@ public class OrderItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
-	private OrderItemPk id;
+	private OrderItemPk id = new OrderItemPk();
 
 	private Integer quantity;
 	private Double price;
@@ -45,7 +46,8 @@ public class OrderItem implements Serializable {
 	public Double getPrice() {
 		return price;
 	}
-
+	
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
